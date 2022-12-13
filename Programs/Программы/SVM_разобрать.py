@@ -71,20 +71,20 @@ def test_plot(X, y, svm_model, axes, title):
   z_model = svm_model.decision_function(np.c_[xx.ravel(), yy.ravel()]).reshape(xx.shape)
   
   plt.scatter(X[:, 0], X[:, 1], c=y, s=50, cmap='autumn')
-  plt.contour(xx, yy, z_model, colors='k', levels=[-1, 0, 1], alpha=0.5, linestyles=['--', '-', '--'])
+  plt.contour(xx, yy, z_model, colors='k', levels=[-1, 0, 1], alpha=0.2, linestyles=['--', '-', '--'])
   plt.contourf(xx, yy, np.sign(z_model.reshape(xx.shape)), alpha=0.3, levels=2, cmap=ListedColormap(rgb), zorder=1)
   plt.title(title)
 
 X, y = make_circles(100, factor=.1, noise=.1)
 fig, axs = plt.subplots(nrows=1,ncols=2,figsize=(12,4))
-test_plot(X, y, SVM(kernel='rbf', C=10, max_iter=60, gamma=1), axs[0], 'OUR ALGORITHM')
+test_plot(X, y, SVM(kernel='rbf', C=10, max_iter=60, gamma=1), axs[0], 'МОЙ АЛГОРИТМ')
 test_plot(X, y, SVC(kernel='rbf', C=10, gamma=1), axs[1], 'sklearn.svm.SVC')
 
 X, y = make_blobs(n_samples=50, centers=2, random_state=0, cluster_std=1.4)
 fig, axs = plt.subplots(nrows=1,ncols=2,figsize=(12,4))
-test_plot(X, y, SVM(kernel='linear', C=10, max_iter=60), axs[0], 'OUR ALGORITHM')
+test_plot(X, y, SVM(kernel='linear', C=10, max_iter=60), axs[0], 'МОЙ АЛГОРИТМ')
 test_plot(X, y, SVC(kernel='linear', C=10), axs[1], 'sklearn.svm.SVC')
 
 fig, axs = plt.subplots(nrows=1,ncols=2,figsize=(12,4))
-test_plot(X, y, SVM(kernel='poly', C=5, max_iter=60, degree=3), axs[0], 'OUR ALGORITHM')
+test_plot(X, y, SVM(kernel='poly', C=5, max_iter=60, degree=3), axs[0], 'МОЙ АЛГОРИТМ')
 test_plot(X, y, SVC(kernel='poly', C=5, degree=3), axs[1], 'sklearn.svm.SVC')
